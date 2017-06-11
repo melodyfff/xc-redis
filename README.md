@@ -1,0 +1,2 @@
+# xc-redis
+redis manage
