@@ -21,13 +21,15 @@
         <log4j.version>1.2.12</log4j.version>
         <jstl.version>1.2</jstl.version>
         <redis.clients>2.9.0</redis.clients>
+        <jackson.databind>2.1.4</jackson.databind>
+        <javax.servlet.api>3.1.0</javax.servlet.api>
     </properties>
 
     <dependencies>
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>javax.servlet-api</artifactId>
-            <version>3.1.0</version>
+            <version>${javax.servlet.api}</version>
         </dependency>
         <!-- spring 核心包 -->
         <!-- spring start -->
@@ -128,7 +130,7 @@
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
-            <version>2.1.4</version>
+            <version>${jackson.databind}</version>
         </dependency>
 
         <!-- https://mvnrepository.com/artifact/redis.clients/jedis -->

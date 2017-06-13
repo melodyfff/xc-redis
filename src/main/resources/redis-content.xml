@@ -47,4 +47,7 @@
         <!--开启事务-->
         <property name="enableTransactionSupport" value="true"/>
     </bean>
+    <!--&lt;!&ndash;spring session 的redis配置&ndash;&gt;-->
+    <!--<bean class="org.springframework.session.data.redis.config.annotation.web.http.RedisHttpSessionConfiguration"/>-->
+
 </beans>

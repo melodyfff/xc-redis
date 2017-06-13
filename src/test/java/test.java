@@ -29,9 +29,18 @@ public class test {
 //        System.out.println(redisService.leftList("testList",s));
 //        System.out.println(redisService.leftList("testList"));
 //        System.out.println(redisService.listSize("testList"));
+//        redisService.set("test1","this is db1");
+
+
+//        redisService.setSet("index",redisService.getAllKeys());
         List<String> linkedHashSetList = new LinkedList<>(redisService.getAllKeys());
         System.out.println(linkedHashSetList);
-        System.out.println((String)redisService.get(linkedHashSetList.get(3)));
+//        System.out.println(redisService.get("name",0,2));
+
+
+
+
+//        System.out.println((String)redisService.get(linkedHashSetList.get(3)));
 //        System.out.println(redisService.rightList("testList"));
     }
 }

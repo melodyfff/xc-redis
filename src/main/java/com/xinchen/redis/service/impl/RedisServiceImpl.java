@@ -6,7 +6,9 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 /**
@@ -41,27 +43,43 @@ public class RedisServiceImpl implements RedisService {
     }
 
     @Override
+    public String get(String key, long start, long end) {
+        return redisTemplate.opsForValue().get(key,start,end);
+    }
+
+
+    @Override
     public Set<String> getAllKeys() {
         return redisTemplate.keys("*");
     }
 
     @Override
-    public Long leftList(String key, List<?> value) {
-       return redisTemplate.opsForList().leftPush(key, value);
+    public void delete(String key) {
+        redisTemplate.delete(key);
     }
 
     @Override
-    public Object leftList(String key) {
+    public List<String> range(String key, long start, long end) {
+        return redisTemplate.opsForList().range(key, start,end);
+    }
+
+    @Override
+    public Long leftPushList(String key, List<?> value) {
+       return redisTemplate.opsForList().leftPushAll(key, value);
+    }
+
+    @Override
+    public Object leftGetList(String key) {
         return redisTemplate.opsForList().leftPop(key);
     }
 
     @Override
-    public Long rightList(String key, List<?> value) {
+    public Long rightPushList(String key, List<?> value) {
         return redisTemplate.opsForList().rightPush(key,value);
     }
 
     @Override
-    public Object rightList(String key) {
+    public Object rightGetList(String key) {
         return redisTemplate.opsForList().rightPop(key);
     }
 
@@ -69,4 +87,29 @@ public class RedisServiceImpl implements RedisService {
     public Long listSize(String key) {
         return redisTemplate.opsForList().size(key);
     }
+
+    @Override
+    public void setSet(String key, Set<?> value) {
+        Iterator<?> it = value.iterator();
+        while (it.hasNext()) {
+            redisTemplate.opsForSet().add(key,it.next());
+        }
+    }
+
+    @Override
+    public Object getSet(String key) {
+        return redisTemplate.opsForSet().members(key);
+    }
+
+    @Override
+    public void setHash(String key, Map<String, ?> value) {
+        redisTemplate.opsForHash().putAll(key,value);
+    }
+
+    @Override
+    public Object getHash(String key) {
+        return redisTemplate.opsForHash().entries(key);
+    }
+
+
 }
