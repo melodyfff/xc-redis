@@ -34,7 +34,9 @@ public class test {
 
 //        redisService.setSet("index",redisService.getAllKeys());
         List<String> linkedHashSetList = new LinkedList<>(redisService.getAllKeys());
-        System.out.println(linkedHashSetList);
+        for(String i :linkedHashSetList){
+            System.out.println(i);
+        }
 //        System.out.println(redisService.get("name",0,2));
 
 
