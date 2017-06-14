@@ -23,11 +23,11 @@ public class RedisController {
     @Autowired
     private RedisService redisService;
 
-    @RequestMapping("main")
-    public ModelAndView forwardMain(){
-        ModelAndView mav = new ModelAndView("/redis/main");
-        return mav;
-    }
+//    @RequestMapping("main")
+//    public ModelAndView forwardMain(){
+//        ModelAndView mav = new ModelAndView("/redis/main");
+//        return mav;
+//    }
 
     @RequestMapping("list")
     @ResponseBody
@@ -38,7 +38,7 @@ public class RedisController {
     }
     @RequestMapping(value = "list/{name}", method = RequestMethod.GET)
     @ResponseBody
-    ModelAndView getContent(@PathVariable String name) {
+    ModelAndView getContent(@PathVariable("name") String name) {
         ModelAndView mav = new ModelAndView("/redis/content");
         mav.addObject("content",redisService.get(name));
         return mav;
