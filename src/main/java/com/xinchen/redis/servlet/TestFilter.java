@@ -1,7 +1,7 @@
 package com.xinchen.redis.servlet;
 
+import com.xinchen.redis.core.annotation.Log;
 import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
@@ -23,21 +23,26 @@ import java.io.IOException;
 @WebFilter(filterName = "testFilter",urlPatterns = "/*")
 public class TestFilter implements Filter {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(TestFilter.class);
+    @Log(description = "test")
+    private static Logger log;
+
+    public static void setLog(Logger log) {
+        TestFilter.log = log;
+    }
 
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
-        LOGGER.info(">>> Filter : test filter init.");
+        log.info(">>> Filter : test filter init.");
     }
 
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
-        LOGGER.info(">>> Filter : test filter working.");
+        log.info(">>> Filter : test filter working.");
         filterChain.doFilter(servletRequest, servletResponse);
     }
 
     @Override
     public void destroy() {
-        LOGGER.info(">>> Filter : test filter destroy.");
+        log.info(">>> Filter : test filter destroy.");
     }
 }
