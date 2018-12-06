@@ -13,8 +13,11 @@ import org.springframework.data.redis.serializer.StringRedisSerializer;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
 /**
@@ -70,6 +73,21 @@ public class AppTest {
         final List list1 = redisTemplate.opsForList().range("list", 0, -1);
         System.out.println(list1);
 
+    }
+
+
+    @Test
+    public void testMap(){
+
+        List test = new ArrayList();
+        test.add("test1");
+
+        Map map = new HashMap<>();
+        map.put("ok", "ok");
+        map.put("test1", test);
+        stringRedisTemplate.opsForValue().set("ok",JSONObject.toJSONString(map));
+
+        System.out.println(stringRedisTemplate.opsForValue().get("ok"));
     }
 
 }
