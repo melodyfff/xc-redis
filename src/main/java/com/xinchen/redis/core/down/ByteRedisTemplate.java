@@ -1,6 +1,7 @@
 package com.xinchen.redis.core.down;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Profile;
 import org.springframework.data.redis.connection.DefaultStringRedisConnection;
 import org.springframework.data.redis.connection.RedisConnection;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
@@ -15,6 +16,7 @@ import org.springframework.stereotype.Component;
  * @date Created In 2018/12/8 0:59
  */
 @Component
+@Profile("dev")
 public class ByteRedisTemplate extends RedisTemplate<String, byte[]> {
 
     public ByteRedisTemplate(){

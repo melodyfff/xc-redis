@@ -2,6 +2,7 @@ package com.xinchen.redis.core.down;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Profile;
 import org.springframework.core.io.Resource;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.http.HttpEntity;
@@ -22,6 +23,7 @@ import java.io.IOException;
  */
 @Component
 @Slf4j
+@Profile("dev")
 public class ImageHelper {
 
     private final RestTemplate restTemplate;
